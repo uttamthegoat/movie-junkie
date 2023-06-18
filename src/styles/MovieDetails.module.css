@@ -1,0 +1,45 @@
+/* Movie Trailer */
+.movieTrailer {
+  aspect-ratio: 16/9;
+}
+.movieTrailer .movie_videos {
+  width: 100%;
+  height: 100%;
+}
+
+/* Movie Details */
+.movieInfo {
+  display: flex;
+  padding: 2rem 1rem;
+}
+.movieInfo .movieposter {
+  text-align: center;
+}
+.movieInfo .movieposter .posterImage {
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+.movieInfo .movieplot {
+  padding: 1.5rem 0rem 0rem 1rem;
+}
+.movieInfo .movieplot .tagline {
+  font-style: italic;
+}
+.movieInfo .movieplot p {
+  text-align: justify;
+}
+.movieInfo .movieplot .genre{
+  margin: 0.8rem 0rem 0.8rem 0rem;
+}
+.movieInfo .movieplot .genre .genreName{
+  padding: 0rem 0.4rem 0rem 0rem;
+}
+.movieInfo .movieplot .minorInfo{
+  margin: 0.8rem 0rem 0.8rem 0rem;
+}
+@media only screen and (max-width: 600px) {
+  .movieInfo .movieposter .posterImage {
+    max-width: 150px !important;
+  }
+}

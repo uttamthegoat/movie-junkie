@@ -1,42 +1,185 @@
+@font-face {
+  font-family: "Reospec";
+  src: local("Reospec"), url("./fonts/Reospec.otf") format(otf);
+}
+@font-face {
+  font-family: "Mars";
+  src: local("Mars"), url("./fonts/Mars.otf") format(otf);
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+}
+
+.App {
+  width: 100%;
+}
+
+/* Navbar */
+.Navbar__pageTitle {
+  font-family: Reospec;
+  margin-right: 40px;
+}
+
+/* Home */
+.Home {
+  background-color: rgb(12, 12, 12);
+  padding-top: 1.4rem;
+}
+
+/* Banner Component */
+.BannerSlider__Inner{
+  aspect-ratio: 16/9;
+}
+.BannerSlider__carouselItem {
+  position: relative;
+  overflow: hidden;
+  transition: transform 1s;
+}
+
+.BannerSlider__carouselItem .carousel__images {
+  width: 100%;
+  height: auto;
+}
+.BannerSlider__carouselItem:hover {
+  transform: scale(1.1);
+}
+
+.BannerSlider__bannerdetails {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.678);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  transition: opacity 0.5s;
+  z-index: 1;
+}
+
+.BannerSlider__carouselItem:hover .BannerSlider__bannerdetails {
+  opacity: 1;
+}
+
+.BannerSlider__bannerdetails .Banner__Link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+
+.BannerSlider__bannerdetails p {
+  width: 36.25rem;
+  color: rgb(255, 255, 255);
+  margin: 0;
+  padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+  .BannerSlider__bannerdetails {
+    bottom: 0px;
+  }
+
+  .BannerSlider__bannerdetails .Banner__Link {
+    padding: 5px 10px;
+  }
+
+  .BannerSlider__bannerdetails p {
+    display: none;
+  }
+}
+
+/* Row Component */
+.Row__forPosters {
+  width: 100%;
+  padding: 20px 10px 20px 10px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.Row__forPosters::-webkit-scrollbar {
+  display: none;
+}
+
+.Row__Posters {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  width: 150px;
+  height: 225px;
+  margin: 10px;
+}
+
+.Row__Posters .imagePoster {
+  transition: transform 1s;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.Row__Posters:hover .imagePoster {
+  transform: scale(1.07);
+}
+
+.Row__Posters .Row__hover {
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.507);
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.Row__Posters:hover .Row__hover {
+  opacity: 1;
+  z-index: 1;
+}
+.Row__Posters .Row__hover .Row__Link {
+  text-decoration: none;
+  color: white;
+  display: block;
+  margin: auto;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Movies */
+.Movies {
+  background-color: black;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Search */
+.Search__input {
+  width: 90%;
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 0;
+  outline: 0;
+  padding: 0rem 1rem; 
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.Search__btn {
+  width: 6rem;
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 0;
+  outline: 0;
+  font-weight: 500;
+  font-size: 20px;
+  transition: transform 0.4s;
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.Search__btn:hover {
+  background-color: rgb(105, 183, 255);
+  color: white;
+  transform: translateY(-5px);
 }

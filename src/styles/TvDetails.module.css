@@ -1,0 +1,45 @@
+/* Tv Trailer */
+.tvTrailer {
+  aspect-ratio: 16/9;
+}
+.tvTrailer .tv_videos {
+  width: 100%;
+  height: 100%;
+}
+
+/* TV Details */
+.tvInfo {
+  display: flex;
+  padding: 2rem 1rem;
+}
+.tvInfo .tvposter {
+  text-align: center;
+}
+.tvInfo .tvposter .posterImage {
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+.tvInfo .tvplot {
+  padding: 1.5rem 0rem 0rem 1rem;
+}
+.tvInfo .tvplot .tagline {
+  font-style: italic;
+}
+.tvInfo .tvplot p {
+  text-align: justify;
+}
+.tvInfo .tvplot .genre {
+  margin: 0.8rem 0rem 0.8rem 0rem;
+}
+.tvInfo .tvplot .genre .genreName {
+  padding: 0rem 0.4rem 0rem 0rem;
+}
+.tvInfo .tvplot .minorInfo {
+  margin: 0.8rem 0rem 0.8rem 0rem;
+}
+@media only screen and (max-width: 600px) {
+  .tvInfo .tvposter .posterImage {
+    max-width: 150px !important;
+  }
+}
