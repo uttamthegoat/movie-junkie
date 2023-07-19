@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "../styles/TvDetails.module.css";
+import axios from "../assets/axiosConfig";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function TvDetails() {
   const [tv_details, setTv_details] = useState({});
@@ -8,21 +10,11 @@ export default function TvDetails() {
   const [tvgenre, setTvgenre] = useState([]);
   const [languages, setLanguages] = useState([]);
 
-  let { state } = useLocation();
-  const source_id = state.source_id;
+  let { source_id } = useParams();
   const tvdetailsApi = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTAwMjNjOGM3MDI2Nzg5YzEwYzA4NjU3NDJjMzIyOSIsInN1YiI6IjY0NzhlMDVjMTc0OTczMDBmYjM5OTk3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bJinzU-SEjU1AR7XTEJFtesjiwPUilljDGe6yowSlMc",
-      },
-    };
-    let url = `https://api.themoviedb.org/3/tv/${source_id}?api_key=e90023c8c7026789c10c0865742c3229&append_to_response=videos&language=en-US`;
-
-    const response = await fetch(url, options);
-    const data = await response.json();
+    let url = `/tv/${source_id}?api_key=e90023c8c7026789c10c0865742c3229&append_to_response=videos&language=en-US`;
+    const response = await axios(url);
+    const data = response.data;
     setTv_details(data);
     setTvsrc(
       data.videos.results.find((video) => video.type === "Trailer")
@@ -55,7 +47,8 @@ export default function TvDetails() {
       )}
       <div className={styles.tvInfo + ` row g-0 w-100`}>
         <div className={styles.tvposter + ` col-sm-3`}>
-          <img
+          <LazyLoadImage
+            effect="blur"
             src={`https://image.tmdb.org/t/p/original${tv_details.poster_path}`}
             alt="TV Series Poster"
             className={styles.posterImage}

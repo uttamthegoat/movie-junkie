@@ -10,12 +10,12 @@ import Navbar from "./components/Navbar";
 // import TvDetails from "./components/TvDetails";
 // import Search from "./components/Search";
 
-const Home = lazy(() => import("./components/Home"));
-const Movies = lazy(() => import("./components/Movies"));
-const MovieDetails = lazy(() => import("./components/MovieDetails"));
-const TvDetails = lazy(() => import("./components/TvDetails"));
-const Search = lazy(() => import("./components/Search"));
-const Redirect = lazy(() => import("./components/Redirect"));
+const Home = lazy(() => import("./pages/Home"));
+const Movies = lazy(() => import("./pages/Movies"));
+const MovieDetails = lazy(() => import("./pages/MovieDetails"));
+const TvDetails = lazy(() => import("./pages/TvDetails"));
+const Search = lazy(() => import("./pages/Search"));
+const Redirect = lazy(() => import("./pages/Redirect"));
 
 function App() {
   return (
@@ -47,8 +47,12 @@ function App() {
               />
             }
           />
-          <Route exact path="/movie_details" element={<MovieDetails />} />
-          <Route exact path="/tv_details" element={<TvDetails />} />
+          <Route
+            exact
+            path="/movie_details/:source_id"
+            element={<MovieDetails />}
+          />
+          <Route exact path="/tv_details/:source_id" element={<TvDetails />} />
           <Route exact path="/search" element={<Search />} />
           <Route path="*" element={<Redirect />} />
         </Routes>

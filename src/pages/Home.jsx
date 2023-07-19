@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import requests from "../sampleData";
-import BannerSlider from "./BannerSlider";
-import Row from "./Row";
+import BannerSlider from "../components/BannerSlider";
+import Row from "../components/Row";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

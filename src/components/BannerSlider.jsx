@@ -3,22 +3,14 @@ import requests from "../sampleData";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
+import axios from "../assets/axiosConfig";
 
 export default function BannerSlider() {
   const [banner, setBanner] = useState([]);
   const bannerapiCall = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTAwMjNjOGM3MDI2Nzg5YzEwYzA4NjU3NDJjMzIyOSIsInN1YiI6IjY0NzhlMDVjMTc0OTczMDBmYjM5OTk3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bJinzU-SEjU1AR7XTEJFtesjiwPUilljDGe6yowSlMc",
-      },
-    };
-    let url = `https://api.themoviedb.org/3${requests.fetchNowPlayingMovies}`;
-    let response = await fetch(url, options);
-    let data = await response.json();
-    setBanner(data.results);
+    let url = requests.fetchNowPlayingMovies;
+    let response = await axios(url);
+    setBanner(response.data.results);
   };
   useEffect(() => {
     bannerapiCall();
@@ -44,8 +36,7 @@ export default function BannerSlider() {
                 />
                 <div className="BannerSlider__bannerdetails">
                   <Link
-                    to="/movie_details"
-                    state={{ source_id: banners.id }}
+                    to={`/movie_details/${banners.id}`}
                     className="fs-2 Banner__Link"
                   >
                     {banners.title}

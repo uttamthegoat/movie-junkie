@@ -50,8 +50,7 @@ export default function MovieCard(props) {
                 {props.movie.title ? props.movie.title : props.movie.name}
               </p>
               <Link
-                type="button"
-                to={props.movie.title?"/movie_details":"/tv_details"}
+                to={props.movie.title?`/movie_details/${props.movie.id}`:`/tv_details/${props.movie.id}`}
                 state={{source_id:props.movie.id}}
                 className="btn btn-outline-light"
               >

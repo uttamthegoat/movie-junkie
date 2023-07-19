@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Paginate from "./Paginate";
+import Paginate from "../components/Paginate";
 import { useEffect } from "react";
-import MovieCard from "./MovieCard";
+import MovieCard from "../components/MovieCard";
+import { axios_Search } from "../assets/axiosConfig";
 
 export default function Search() {
   const [search, setSearch] = useState([]);
@@ -12,20 +13,12 @@ export default function Search() {
   const [searchValue, setSearchValue] = useState("");
 
   const searchapiCall = async (page) => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTAwMjNjOGM3MDI2Nzg5YzEwYzA4NjU3NDJjMzIyOSIsInN1YiI6IjY0NzhlMDVjMTc0OTczMDBmYjM5OTk3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bJinzU-SEjU1AR7XTEJFtesjiwPUilljDGe6yowSlMc",
-      },
-    };
-    let movieurl = `https://api.themoviedb.org/3/search/movie?api_key=e90023c8c7026789c10c0865742c3229&query=${searchValue}&include_adult=false&language=en-US&page=${page}`;
-    let tvurl = `https://api.themoviedb.org/3/search/tv?api_key=e90023c8c7026789c10c0865742c3229&query=${searchValue}&include_adult=false&language=en-US&page=${page}`;
-    let movieresponse = await fetch(movieurl, options);
-    let tvresponse = await fetch(tvurl, options);
-    let moviedata = await movieresponse.json();
-    let tvdata = await tvresponse.json();
+    let movieurl = `/movie?api_key=e90023c8c7026789c10c0865742c3229&query=${searchValue}&include_adult=false&language=en-US&page=${page}`;
+    let tvurl = `/tv?api_key=e90023c8c7026789c10c0865742c3229&query=${searchValue}&include_adult=false&language=en-US&page=${page}`;
+    let movieResponse = await axios_Search(movieurl);
+    let tvResponse = await axios_Search(tvurl);
+    let moviedata = movieResponse.data;
+    let tvdata = tvResponse.data;
     console.log(
       Math.ceil((moviedata.total_results + tvdata.total_results) / 40)
     );
@@ -42,7 +35,7 @@ export default function Search() {
     if (e.keyCode === 13) {
       searchapiCall(1);
     }
-    setCurPage(1)
+    setCurPage(1);
   };
 
   const handleSearchValue = (e) => {

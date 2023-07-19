@@ -4,21 +4,14 @@ import { Link } from "react-router-dom";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from "../assets/axiosConfig";
 
 export default function Row(props) {
   const [posterData, setPosterData] = useState([]);
   const rowapiCall = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTAwMjNjOGM3MDI2Nzg5YzEwYzA4NjU3NDJjMzIyOSIsInN1YiI6IjY0NzhlMDVjMTc0OTczMDBmYjM5OTk3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bJinzU-SEjU1AR7XTEJFtesjiwPUilljDGe6yowSlMc",
-      },
-    };
-    let url = `https://api.themoviedb.org/3${props.content}`;
-    let response = await fetch(url, options);
-    let data = await response.json();
+    let url = props.content;
+    let response = await axios(url);
+    let data = response.data;
     setPosterData(data.results);
   };
   useEffect(() => {
@@ -47,8 +40,11 @@ export default function Row(props) {
               />
               <div className="Row__hover">
                 <Link
-                  to={poster.title ? "/movie_details" : "/tv_details"}
-                  state={{ source_id: poster.id }}
+                  to={
+                    poster.title
+                      ? `/movie_details/${poster.id}`
+                      : `/tv_details/${poster.id}`
+                  }
                   className="Row__Link"
                 >
                   {poster.title ? poster.title : poster.name}
@@ -59,6 +55,5 @@ export default function Row(props) {
         })}
       </div>
     </div>
-    // </div>
   );
 }

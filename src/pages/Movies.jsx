@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import MovieCard from "./MovieCard";
-import Paginate from "./Paginate";
+import MovieCard from "../components/MovieCard";
+import Paginate from "../components/Paginate";
+import axios from "../assets/axiosConfig";
 
 export default function Movies(props) {
   const [movies, setMovies] = useState([]);
@@ -10,18 +11,10 @@ export default function Movies(props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const movieapicall = async (page) => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTAwMjNjOGM3MDI2Nzg5YzEwYzA4NjU3NDJjMzIyOSIsInN1YiI6IjY0NzhlMDVjMTc0OTczMDBmYjM5OTk3OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bJinzU-SEjU1AR7XTEJFtesjiwPUilljDGe6yowSlMc",
-      },
-    };
-    let url = `https://api.themoviedb.org/3${props.fetchContent}&page=${page}`;
-    console.log(url);
-    let response = await fetch(url, options);
-    let data = await response.json();
+
+    let url = `${props.fetchContent}&page=${page}`;
+    let response = await axios(url);
+    let data = response.data;
     setMovies(data.results);
     console.log(Math.ceil(data.total_results / 20));
     setTotalPages(Math.ceil(data.total_results / 20));
