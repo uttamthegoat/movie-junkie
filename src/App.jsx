@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import requests from "./sampleData";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
@@ -20,6 +20,7 @@ const Redirect = lazy(() => import("./pages/Redirect"));
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
       <Suspense fallback={<h1 className="text-center">Loading...</h1>}>
         <ScrollToTop />
         <Navbar title="Movie Junkie" />
@@ -57,6 +58,7 @@ function App() {
           <Route path="*" element={<Redirect />} />
         </Routes>
       </Suspense>
+      </BrowserRouter>
     </div>
   );
 }
