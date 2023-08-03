@@ -19,7 +19,7 @@ const Redirect = lazy(() => import("./pages/Redirect"));
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
     <div className="App">
       <Suspense fallback={<h1 className="text-center">Loading...</h1>}>
         <ScrollToTop />
