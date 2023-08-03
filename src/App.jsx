@@ -19,9 +19,9 @@ const Redirect = lazy(() => import("./pages/Redirect"));
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <Suspense fallback={<h1 className="text-center">Loading...</h1>}>
-      <BrowserRouter>
         <ScrollToTop />
         <Navbar title="Movie Junkie" />
         <Routes>
@@ -57,9 +57,9 @@ function App() {
           <Route exact path="/search" element={<Search />} />
           <Route path="*" element={<Redirect />} />
         </Routes>
-      </BrowserRouter>
       </Suspense>
     </div>
+    </BrowserRouter>
   );
 }
 
