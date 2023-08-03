@@ -4,18 +4,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import requests from "./sampleData";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
-// import Home from "./components/Home";
-// import Movies from "./components/Movies";
-// import MovieDetails from "./components/MovieDetails";
-// import TvDetails from "./components/TvDetails";
-// import Search from "./components/Search";
 
-const Home = lazy(() => import("./pages/Home"));
-const Movies = lazy(() => import("./pages/Movies"));
-const MovieDetails = lazy(() => import("./pages/MovieDetails"));
-const TvDetails = lazy(() => import("./pages/TvDetails"));
-const Search = lazy(() => import("./pages/Search"));
-const Redirect = lazy(() => import("./pages/Redirect"));
+import Home from "./pages/Home";
+import Movies from "./pages/Movies";
+import MovieDetails from "./pages/MovieDetails";
+import TvDetails from "./pages/TvDetails";
+import Search from "./pages/Search";
+
+// const Home = lazy(() => import("./pages/Home"));
+// const Movies = lazy(() => import("./pages/Movies"));
+// const MovieDetails = lazy(() => import("./pages/MovieDetails"));
+// const TvDetails = lazy(() => import("./pages/TvDetails"));
+// const Search = lazy(() => import("./pages/Search"));
+// const Redirect = lazy(() => import("./pages/Redirect"));
 
 function App() {
   return (
