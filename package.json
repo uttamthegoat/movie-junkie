@@ -1,5 +1,6 @@
 {
   "name": "movie-junkie",
+  "homepage": "https://movie-junkie.vercel.app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
