@@ -16,7 +16,7 @@ import Search from "./pages/Search";
 // const MovieDetails = lazy(() => import("./pages/MovieDetails"));
 // const TvDetails = lazy(() => import("./pages/TvDetails"));
 // const Search = lazy(() => import("./pages/Search"));
-// const Redirect = lazy(() => import("./pages/Redirect"));
+const Redirect = lazy(() => import("./pages/Redirect"));
 
 function App() {
   return (
