@@ -28,7 +28,6 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home title="Home" />} />
           <Route
-            exact
             path="/movies"
             element={
               <Movies
@@ -39,7 +38,6 @@ function App() {
             }
           />
           <Route
-            exact
             path="/tv_series"
             element={
               <Movies
@@ -50,12 +48,11 @@ function App() {
             }
           />
           <Route
-            exact
             path="/movie_details/:source_id"
             element={<MovieDetails />}
           />
-          <Route exact path="/tv_details/:source_id" element={<TvDetails />} />
-          <Route exact path="/search" element={<Search />} />
+          <Route path="/tv_details/:source_id" element={<TvDetails />} />
+          <Route path="/search" element={<Search />} />
           <Route path="*" element={<Redirect />} />
         </Routes>
       </Suspense>
