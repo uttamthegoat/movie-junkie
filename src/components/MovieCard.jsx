@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -51,7 +52,6 @@ export default function MovieCard(props) {
               </p>
               <Link
                 to={props.movie.title?`/movie_details/${props.movie.id}`:`/tv_details/${props.movie.id}`}
-                state={{source_id:props.movie.id}}
                 className="btn btn-outline-light"
               >
                 More Info
